@@ -1,0 +1,10 @@
+# Optional local title embeddings for the cross-source de-duplication funnel.
+# If not installed, the orchestrator silently falls back to normalization-only
+# de-duplication; everything else keeps working.
+#
+# If you hit `ssl.SSLError: [SSL] record layer failure` (common on WSL2 /
+# restrictive networks), retry with a mirror, e.g.:
+#   pip install -r requirements-embed.txt -i https://pypi.org/simple
+# or install via conda instead (pulls from conda-forge, sometimes more reliable):
+#   conda install -c conda-forge sentence-transformers
+sentence-transformers>=2.2.0

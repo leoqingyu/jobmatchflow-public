@@ -1,0 +1,64 @@
+# Web & API
+fastapi>=0.115.0
+python-multipart>=0.0.9
+uvicorn[standard]>=0.30.0
+
+# Database
+sqlalchemy>=2.0.0
+alembic>=1.13.0
+psycopg2-binary>=2.9.9
+
+# Configuration
+pydantic-settings>=2.2.0
+python-dotenv>=1.0.0
+
+# Auth: password hashing + session JWT (httpOnly cookie)
+bcrypt>=4.1.0
+pyjwt>=2.9.0
+
+# AI / LLM (Gemini for the main pipeline + Claude for generation; the OpenAI-compatible
+# client is used for DeepSeek/Qwen model comparisons, see ai/providers/openai_compatible_model.py)
+google-genai>=1.0.0
+anthropic>=0.40.0
+openai>=1.50.0
+
+# De-duplication: local job-title embeddings (funnel dedup)
+sentence-transformers>=2.2.0
+# Pinned explicitly: without this, pip's resolver can backtrack sentence-transformers'
+# unbounded `numpy>=1.20.0` all the way down to a pre-2.0 numpy release while trying to
+# satisfy python-jobspy's own unbounded range — those old numpy sdists have no Python 3.12
+# wheel and fail to build (their setuptools shim imports pkgutil.ImpImporter, removed in 3.12).
+numpy>=1.26.0
+
+# Web Scraping
+python-jobspy>=1.1.0
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+playwright>=1.42.0
+
+# PDF Generation (choose one)
+weasyprint>=61.0
+
+# DOCX Generation (single resume template, assembled programmatically, see renderer/docx_render.py)
+python-docx>=1.1.0
+
+# HTML Templating
+jinja2>=3.1.0
+
+# Email
+resend>=0.7.0
+
+# Scheduling
+apscheduler>=3.10.4
+
+# PDF text extraction (for uploaded resumes)
+pypdf>=4.0.0
+
+# Resume editor thumbnail preview: DOCX -> PDF (LibreOffice) rasterized to a low-res PNG
+pymupdf>=1.24.0
+
+# Utilities
+python-dateutil>=2.9.0
+
+# Object Storage (future, optional)
+# boto3>=1.34.0

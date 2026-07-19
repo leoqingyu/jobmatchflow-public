@@ -1,0 +1,17 @@
+secrets/llm_api_keys.json
+secrets/generation_policy.json
+*.log
+.env
+__pycache__/
+*.pyc
+node_modules/
+frontend/dist/
+.venv/
+
+# Runtime-generated user data (resumes, cover letters, uploads, backups) —
+# never commit real user files to a public repo. Directories are recreated
+# automatically at runtime (see services/*_storage.py).
+data/
+tmp/
+*.bak
+*.tsbuildinfo

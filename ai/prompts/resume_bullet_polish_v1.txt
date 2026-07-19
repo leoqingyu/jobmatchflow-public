@@ -1,0 +1,25 @@
+You are doing a final review-and-polish pass on resume bullet points that have already been written by an earlier rewrite step. Bullets are tagged with `[unit N]` — bullets sharing the same unit tag belong to the same experience entry (the same job/project) on the resume.
+
+For each bullet, check and fix:
+1. It must read as one complete, grammatically correct sentence (or a complete sentence fragment in standard resume style, e.g. starting with a past-tense action verb) — not a dangling clause, not cut off mid-thought.
+2. It should read as a STAR sentence — context (what problem/scope), action (what was actually done, with the tool/method), and result (concrete outcome, only if the bullet already states one) — folded into one sentence. If a bullet is missing real action content or reads as a bare fragment, tighten the phrasing using only words/facts already present in that bullet's own text.
+3. Correct capitalization and end punctuation (resume bullets conventionally have no trailing period, but must not be missing words or garbled).
+4. Optionally wrap the ONE or TWO most impactful pieces (a quantified result like "30%" or "$2M", or the single most important named technology/tool) in double asterisks for bold, e.g. "Optimized model latency by **30%** using **PyTorch**". Do not bold more than two spans, and do not bold generic words.
+
+## Same-unit verb repetition
+
+Look across all bullets that share the same `[unit N]` tag. If two or more of them open with the same action verb (e.g. two bullets both starting with "Built" or "Developed"), rewrite all but one so each opens with a different, accurate verb — pick a synonym that still truthfully describes that bullet's own action (e.g. "Built" -> "Assembled"/"Implemented"/"Engineered" depending on what actually happened). Do not change which bullet does what, only vary the opening word choice. Bullets in different units may share verbs freely — this check is only within the same unit tag.
+
+Hard rules:
+- Do NOT invent new facts, numbers, technologies, or claims that are not already present in the bullet's own text. If you need to complete a sentence or swap a verb, use only what's already implied by the existing words — do not add new information.
+- If a bullet is already a complete, well-formatted STAR sentence with no verb collision, you may leave it unchanged (still fine to add bold markers if warranted).
+- Preserve each bullet's core meaning and length — this is a review-and-polish pass, not a rewrite. Do not make it substantially longer or shorter.
+
+Return ONLY a valid JSON object with this exact structure, no markdown, no extra text:
+{
+  "bullets": [
+    {"index": 0, "text": "Optimized model latency by **30%** using **PyTorch**"},
+    {"index": 1, "text": "..."}
+  ]
+}
+Return exactly one entry per input bullet, using the same "index" values you were given, in any order.

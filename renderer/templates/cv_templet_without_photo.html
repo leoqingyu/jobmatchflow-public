@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ full_name }} - Resume</title>
+    <style>
+        /* 紧凑版排版设置 */
+        :root {
+            --text-color: #000;
+            --link-color: #000;
+            --font-family: "Computer Modern", "Times New Roman", Times, serif;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            color: var(--text-color);
+            line-height: 1.25;
+            font-size: 10.5pt;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        @media screen {
+            body {
+                padding: 20px;
+                background-color: #f4f4f4;
+                display: flex;
+                justify-content: center;
+            }
+        }
+
+        .page {
+            width: 210mm;
+            max-width: 210mm;
+            min-height: 297mm;
+            background: #fff;
+            padding: 18mm 20mm 22mm 20mm;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-sizing: border-box;
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+            border-bottom: 1px solid #000; 
+        }
+
+        /* 头部样式 - 已修改为整体居中 */
+        .header {
+            text-align: center;
+            margin-bottom: 12px; 
+            margin-top: -20px; 
+        }
+
+        .name {
+            font-size: 24pt; 
+            font-variant: small-caps; 
+            font-weight: bold;
+            margin: 0 0 6px 0;
+        }
+
+        .contact-info { 
+            font-size: 9.5pt; 
+            line-height: 1.4;
+        }
+        
+        .contact-row {
+            /* 居中显示，取消了强制不换行，防止信息过长时被截断 */
+            white-space: normal; 
+        }
+
+        /* 章节标题 */
+        .section { margin-bottom: 10px; }
+        .section-title {
+            font-size: 13pt; 
+            font-variant: small-caps; 
+            font-weight: normal;
+            border-bottom: 1px solid #000; 
+            margin: 6px 0 4px 0;
+            padding-bottom: 2px;
+        }
+
+        /* 个人简介 */
+        .profile-summary {
+            font-size: 10pt;
+            text-align: justify;
+            margin-bottom: 4px;
+        }
+
+        /* 条目布局 */
+        .item { margin-bottom: 6px; } 
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .item-title { font-weight: bold; }
+        .item-subtitle { font-style: italic; font-size: 10pt; }
+        .item-date, .item-location {
+            text-align: right;
+            white-space: nowrap; 
+        }
+        .item-date { font-weight: normal; font-size: 10pt; }
+        .item-location { font-style: italic; font-size: 10pt; }
+
+        /* 列表样式 */
+        ul.bullet-list {
+            margin: 2px 0 0 0; 
+            padding-left: 18px;
+        }
+        ul.bullet-list li {
+            margin-bottom: 2px; 
+            font-size: 10pt; 
+        }
+
+        /* 技能区样式 */
+        .skills-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 3px 0 0 0;
+            font-size: 10pt;
+        }
+        .skills-list li { margin-bottom: 2px; }
+
+        @media print {
+            body {
+                background: #fff !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                display: block !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .page {
+                box-shadow: none !important;
+                width: 210mm;
+                max-width: 210mm;
+                min-height: 297mm;
+                padding: 18mm 20mm 22mm 20mm;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page">
+    
+    <div class="header">
+        <h1 class="name">{{ full_name }}</h1>
+        <div class="contact-info">
+            <div class="contact-row">
+                {{ location }}{% if phone %} | {{ phone }}{% endif %}{% if email %} | <a href="mailto:{{ email }}">{{ email }}</a>{% endif %}
+            </div>
+            {% if linkedin or github or visa %}
+            <div class="contact-row">
+                {% if linkedin %}<a href="{{ linkedin.url }}">{{ linkedin.label | default('LinkedIn') }}</a>{% endif %}
+                {% if github %}{% if linkedin %} | {% endif %}<a href="{{ github.url }}">{{ github.label | default('GitHub') }}</a>{% endif %}
+                {% if visa %}{% if linkedin or github %} | {% endif %}<strong>{{ visa }}</strong>{% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if profile_summary %}
+    <div class="section">
+        <div class="section-title">Summary</div>
+        <div class="profile-summary">
+            {{ profile_summary }}
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="section">
+        <div class="section-title">Education</div>
+        {% for edu in education %}
+        <div class="item">
+            <div class="item-row">
+                <div class="item-title">{{ edu.degree }}, {{ edu.institution }}</div>
+                <div class="item-date">{{ edu.date_range }}</div>
+            </div>
+            {% if edu.location or edu.subtitle %}
+            <div class="item-row">
+                <div class="item-subtitle">{{ edu.subtitle | default('') }} {% if edu.location %}{{ edu.location }}{% endif %}</div>
+            </div>
+            {% endif %}
+            {% if edu.bullets and edu.bullets|length > 0 %}
+            <ul class="bullet-list">
+                {% for bullet in edu.bullets %}
+                <li>{{ bullet | safe }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="section">
+        <div class="section-title">Experience</div>
+        {% for job in experience %}
+        <div class="item">
+            <div class="item-row">
+                <div class="item-title">{{ job.title }}</div>
+                <div class="item-date">{{ job.date_range }}</div>
+            </div>
+            <div class="item-row">
+                <div class="item-subtitle">{{ job.company }}</div>
+                <div class="item-location">{{ job.location }}</div>
+            </div>
+            {% if job.bullets and job.bullets|length > 0 %}
+            <ul class="bullet-list">
+                {% for bullet in job.bullets %}
+                <li>{{ bullet | safe }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+    {# Publications（兼容旧字段 projects） #}
+    {% set _publications = publications if publications is defined and publications else projects %}
+    {% if _publications and _publications|length > 0 %}
+    <div class="section">
+        <div class="section-title">Publications</div>
+        {% for pub in _publications %}
+        <div class="item">
+            <div class="item-row">
+                <div class="item-title">
+                    <strong>{{ pub.title | default(pub.name) }}</strong>
+                    {% if pub.venue or pub.journal or pub.conference or pub.technologies %}
+                    | <em>{{ pub.venue | default(pub.journal | default(pub.conference | default(pub.technologies))) }}</em>
+                    {% endif %}
+                    {% if pub.link or pub.url %}
+                    | <a href="{{ pub.link | default(pub.url) }}">link</a>
+                    {% endif %}
+                </div>
+                <div class="item-date">{{ pub.date | default(pub.date_range | default(pub.year)) }}</div>
+            </div>
+            {% set _bullets = pub.highlights | default(pub.bullets) %}
+            {% if _bullets and _bullets|length > 0 %}
+            <ul class="bullet-list">
+                {% for bullet in _bullets %}
+                <li>{{ bullet | safe }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if skills and skills|length > 0 %}
+    <div class="section">
+        <div class="section-title">Skills</div>
+        <ul class="skills-list">
+            {% for skill_group in skills %}
+            {# 勿用 skill_group.items：点号会解析成 dict 内置方法 #}
+            <li><strong>{{ skill_group['category'] }}:</strong> {{ skill_group['items'] }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>

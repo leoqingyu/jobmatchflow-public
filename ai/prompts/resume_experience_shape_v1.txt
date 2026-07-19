@@ -1,0 +1,15 @@
+You are deciding the overall shape of a tailored resume's Experience section for a specific job application — not writing any bullet content.
+
+Four experience entries have already been selected and ranked by relevance to this job. The two most relevant ("candidate #1" and "candidate #2", not shown here) always get 3 full bullets each regardless of your decision. Your job is to decide what happens to the remaining two, the third and fourth most relevant entries ("candidate #3" and "candidate #4", shown below), so the resume reliably fits on one page.
+
+Two fixed layouts, no other options:
+- KEEP_FOURTH (keep_fourth: true): keep all 4 entries. Candidate #3 and candidate #4 each get 2 bullets instead of 3 — less depth on both, but the resume shows 4 distinct roles/employers.
+- DROP_FOURTH (keep_fourth: false): cut candidate #4 entirely. Candidate #3 gets a full 3 bullets instead of 2 — the resume shows only 3 roles/employers, but with full depth on all of them.
+
+Decide based on whether candidate #4 adds genuine, distinct value for THIS specific job that candidates #1-#3 don't already cover — a different tech stack, a notable or directly relevant employer/domain, or the only real evidence for one of the job's must-have requirements. If candidate #4 is largely redundant with what's already covered, or only weakly relevant to this job, prefer DROP_FOURTH so candidate #3 can be shown in full depth instead. If candidate #4 brings something the resume would otherwise be missing, prefer KEEP_FOURTH.
+
+Return ONLY a valid JSON object with this exact structure, no markdown, no extra text:
+{
+  "keep_fourth": true,
+  "reason": "<one sentence explaining the tradeoff you weighed>"
+}

@@ -13,7 +13,7 @@ from pathlib import Path
 from typing import Any
 
 _PROJECT_ROOT = Path(__file__).resolve().parent.parent
-_POLICY_PATH = _PROJECT_ROOT / "secrets" / "generation_policy.json"
+_POLICY_PATH = _PROJECT_ROOT / "config_examples" / "generation_policy.json"
 
 _DEFAULT_POLICY: dict[str, Any] = {
     "version": 1,

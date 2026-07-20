@@ -17,12 +17,10 @@ AI-powered job discovery, CV–job matching, tailored application materials, and
 
 ---
 
-<!-- Replace this image with a real product screenshot -->
-
 <p align="center">
   <img
-    src="docs/images/match-analysis.png"
-    alt="JobMatchFlow dashboard showing matched jobs and application status"
+    src="docs/images/demo.png"
+    alt="JobMatchFlow product demo"
     width="900"
   />
 </p>
@@ -67,7 +65,15 @@ Help users distinguish between strong matches, realistic opportunities, and low-
 
 ### Tailored application materials
 
-Prepare job-specific resume content and cover letters using the user's master career profile.
+Prepare job-specific resume content and cover letters using the user's master career profile. For each job, JobMatchFlow rewrites and reorders the relevant bullet points from the user's master CV to foreground the experience that matches that specific posting, rather than sending the same static resume everywhere.
+
+<p align="center">
+  <img
+    src="docs/images/resume-rewrite.png"
+    alt="JobMatchFlow tailored resume rewrite for a specific job"
+    width="800"
+  />
+</p>
 
 ### Application tracking
 
@@ -91,9 +97,13 @@ The platform combines job discovery with personalized evaluation, helping users 
 
 ## Repository scope
 
-This repository contains the full JobMatchFlow source: the FastAPI backend, the
-scraping and job-ingestion pipeline, the LLM-based scoring and matching logic,
-resume/cover-letter generation and rendering, and the React frontend.
+This repository contains a self-hostable reference implementation of
+JobMatchFlow, including the FastAPI backend, React frontend, AI matching
+workflow, document generation, application tracking, and a replaceable
+example job-source connector.
+
+Production infrastructure, production data sourcing, credentials, and
+real user data are maintained separately.
 
 > **Note on job sourcing:** the bundled scraper (`scraper/providers/jobspy_provider.py`)
 > is a minimal reference implementation on top of the open-source
@@ -225,26 +235,18 @@ URLs in any committed file — only in your local, gitignored `.env`.
 
 ## Project status
 
-JobMatchFlow is currently under active development.
+JobMatchFlow is live in Founder Beta.
 
-Current priorities include:
+The hosted version currently supports:
 
-* Improving job relevance and match explanations
-* Supporting additional countries and job sources
-* Refining resume and cover-letter customization
-* Building a clearer application workflow
-* Collecting feedback from early users
+* Career profile setup
+* Daily job discovery
+* Explainable CV–job matching
+* Tailored resume and cover-letter generation
+* Application tracking
 
-## Roadmap
-
-* [ ] Public product demo
-* [ ] Improved onboarding and career-profile setup
-* [ ] Explainable job-fit scoring
-* [ ] Resume and cover-letter workspace
-* [ ] Application pipeline and reminders
-* [ ] Additional European markets
-* [ ] North American market support
-* [ ] User feedback and evaluation dashboard
+Production job sourcing and infrastructure are maintained separately
+from this public reference implementation.
 
 ## Feedback
 

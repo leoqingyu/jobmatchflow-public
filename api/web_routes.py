@@ -94,7 +94,7 @@ def api_get_generation_policy():
 
 @router.put("/settings/generation-policy", dependencies=[Depends(require_admin)])
 def api_put_generation_policy(body: dict = Body(...)):
-    """写入 secrets/generation_policy.json；结构自定，建议保留 version / rules 等字段便于后续演进。"""
+    """写入 config_examples/generation_policy.json；结构自定，建议保留 version / rules 等字段便于后续演进。"""
     try:
         write_generation_policy(body)
     except ValueError as e:

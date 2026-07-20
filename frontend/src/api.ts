@@ -298,7 +298,7 @@ export async function fetchPublicSettings(): Promise<PublicSettings> {
   return r.json();
 }
 
-/** 生成策略 JSON（占位，当前不覆盖单次生成所选模型）；GET/PUT 与后端 secrets/generation_policy.json 同步 */
+/** 生成策略 JSON（占位，当前不覆盖单次生成所选模型）；GET/PUT 与后端 config_examples/generation_policy.json 同步 */
 export async function fetchGenerationPolicy(): Promise<Record<string, unknown>> {
   const r = await fetch(`${apiPrefix}/settings/generation-policy`);
   if (!r.ok) throw new Error(await errText(r));

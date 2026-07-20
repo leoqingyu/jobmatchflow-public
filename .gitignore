@@ -1,5 +1,5 @@
-secrets/llm_api_keys.json
-secrets/generation_policy.json
+config_examples/llm_api_keys.json
+config_examples/generation_policy.json
 *.log
 .env
 __pycache__/

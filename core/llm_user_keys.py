@@ -1,7 +1,7 @@
 """
 每用户多密钥（Claude / Gemini Pro / Gemini Lite）的 JSON 配置。
 
-复制 secrets/llm_api_keys.example.json → secrets/llm_api_keys.json 并填写；
+复制 config_examples/llm_api_keys.template.json → config_examples/llm_api_keys.json 并填写；
 后续可迁库为每用户三列 API Key。未在文件或 env 中配置的密钥在调用对应模型时会报错。
 """
 
@@ -13,7 +13,7 @@ from pathlib import Path
 from typing import Any
 
 _PROJECT_ROOT = Path(__file__).resolve().parent.parent
-_KEYS_PATH = _PROJECT_ROOT / "secrets" / "llm_api_keys.json"
+_KEYS_PATH = _PROJECT_ROOT / "config_examples" / "llm_api_keys.json"
 
 
 @dataclass(frozen=True)

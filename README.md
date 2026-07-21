@@ -14,7 +14,7 @@ This repo is the full source: a FastAPI backend, an ingestion/scraping pipeline,
 LLM-based scoring and matching engine, resume/cover-letter generation, and a React
 frontend.
 
-[Live Demo](https://app.jobmatchflow.com) · [Architecture](#architecture) · [Report an Issue](https://github.com/leoqingyu/jobmatchflow-public/issues)
+[Live Demo](https://www.jobmatchflow.com) · [Architecture](#architecture) · [Report an Issue](https://github.com/leoqingyu/jobmatchflow-public/issues)
 
 ![CI](https://github.com/leoqingyu/jobmatchflow-public/actions/workflows/ci.yml/badge.svg)
 ![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)
